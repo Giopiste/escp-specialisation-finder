@@ -217,14 +217,42 @@
             // Transparent scoring:
             // +3 for bucket match (consulting/finance/etc) when bucket appears in keywords
             // +2 for tag match
-            // +0.5 for partial name match
+            // +0.5 for partial name/field/tag match
+            // +1.5 for match in s.keywords (implicit but curated)
             let score = 0;
 
-            const text = norm(s.name + " " + s.field + " " + (s.tags || []).join(" "));
+            const text = norm(
+                (s.name || "") + " " +
+                (s.field || "") + " " +
+                (s.campus || "") + " " +
+                (s.semester || "") + " " +
+                (s.language || "") + " " +
+                (s.tags || []).join(" ") + " " +
+                (s.courses || []).join(" ")
+            );
+
+            const keywordText = norm((s.keywords || []).join(" "));
+
             for (const kw of kws) {
-                if (["consulting", "finance", "marketing", "sustainability", "entrepreneurship", "digital"].includes(kw) && norm(s.field).includes(kw)) score += 3;
+                // bucket match (user keywords contain a bucket AND spec is in that bucket via tags or field)
+                if (
+                    ["consulting", "finance", "marketing", "sustainability", "entrepreneurship", "digital"].includes(kw) &&
+                    (
+                        norm(s.field || "").includes(kw) ||
+                        (s.tags || []).some(t => norm(t).includes(kw))
+                    )
+                ) {
+                    score += 3;
+                }
+
+                // exact tag match
                 if ((s.tags || []).some(t => norm(t) === kw)) score += 2;
+
+                // partial match in visible text (name/field/campus/semester/language/tags/courses)
                 if (text.includes(kw)) score += 0.5;
+
+                // implicit curated keywords match (your manual synonyms / related terms)
+                if (keywordText.includes(kw)) score += 1.5;
             }
 
             // Slight preference for more seats (more realistic chance)
