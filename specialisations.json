@@ -16,5 +16,187 @@
             "Global Investment Banking, M&A and Private Equity (BA17)",
             "International Human Resource Management (HA03)"
         ]
+    },
+    {
+        "id": "OP62",
+        "name": "Option E (Entrepreneurship – Climate/Digital) *",
+        "campus": "Berlin",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Entrepreneurship",
+        "seats": 28,
+        "ects": 20,
+        "contact_hours": 120,
+        "description": "Entrepreneurship as a mindset and method for action under uncertainty, focused on developing entrepreneurial competencies to create digital innovations with impact. This year’s Option E focuses on digital solutions addressing climate change. Highly interactive, project-based and requires strong presence in Berlin, with coaching sessions and a mandatory field trip to major European ecosystems.",
+        "courses": [
+            "Theory of Entrepreneurship (15h)",
+            "Entrepreneurial Ecosystems (15h)",
+            "Entrepreneurial Finance (15h)",
+            "Entrepreneurial Accounting (15h)",
+            "Effectuation – The Expert Entrepreneur Approach (15h)",
+            "Design Thinking (15h)",
+            "Execution – Business Models and Investor Processes (30h)"
+        ],
+        "notes": "Selection based on written application (CV + motivation) and possibly interview. Optional ‘flash idea’. Includes mandatory study trip (~€300 + travel/visa costs)."
+    },
+    {
+        "id": "OP112",
+        "name": "Sustainability Management",
+        "campus": "Berlin",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Sustainability",
+        "seats": 38,
+        "ects": 20,
+        "contact_hours": 120,
+        "description": "Builds the skills to integrate sustainability into business activities: environmental & sustainability management, marketing for the sustainability transition, and responsible supply chains. Includes a future-oriented view at the intersection of digitalization and sustainability (e.g., circular/sharing economy, green and social startups) and uses Berlin’s ecosystem as a practical learning environment with cases, exercises, group work and guest speakers.",
+        "courses": [
+            "Basics of Environmental and Sustainability Management",
+            "Marketing for Sustainability Transition",
+            "Creating Responsible Supply Chains",
+            "Managing the Future (Digitalization x Sustainability)"
+        ],
+        "notes": "Berlin is a strong context for sustainability (academic focus + Germany’s track record + green/social startup ecosystem)."
+    },
+    {
+        "id": "OP142",
+        "name": "Cyber Risk Management",
+        "campus": "Berlin",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Digital Transformation",
+        "seats": 28,
+        "ects": 20,
+        "contact_hours": 120,
+        "description": "Builds a solid foundation in cybersecurity and risk management for future business leaders (no technical background required). Prepares graduates to bridge technical cybersecurity expertise and strategic business decision-making, covering managerial risk methods, network security and cryptography, cyber law/ethics, and a capstone strategy implementation project.",
+        "courses": [
+            "Cyber Security and Risk Management (30h)",
+            "Network Security and Cryptography for Future Business Leaders (30h)",
+            "Cyber Law, Regulations and Ethics (30h)",
+            "Capstone Project: Cyber Security Strategy Implementation (30h)"
+        ],
+        "notes": "Focus on identifying threats/vulnerabilities, designing cybersecurity strategies and policies, managing business impact/continuity, and navigating legal, ethical and regulatory requirements."
+    },
+    {
+        "id": "OP29",
+        "name": "Business Consulting",
+        "campus": "London",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Consulting",
+        "seats": 58,
+        "ects": 20,
+        "contact_hours": 120,
+        "description": "Explores the role of the management consultant and how to manage/lead consulting interventions within ethical and professional standards. Covers the consulting industry, the phases of the consulting process, tools and techniques for advisory engagements, and strong practical exposure through a real company consultancy project. Emphasizes client interaction and effective communication.",
+        "courses": [
+            "Business Transformation and Innovation (BX16) – 30h",
+            "Company Consultancy Project (BX19)",
+            "Financing Management for Consulting (BX17) – 30h",
+            "Management Consulting in Practice (BX15) – 30h (McKinsey-style problem solving + microeconomics of competitiveness)"
+        ],
+        "notes": "Application required (cover letter + proof of English fluency). Strong practical component (real project for actual companies)."
+    },
+    {
+        "id": "OP103",
+        "name": "Energy Transitions and Sustainability",
+        "campus": "London",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Economics",
+        "seats": 65,
+        "ects": 20,
+        "contact_hours": 120,
+        "description": "Provides a solid understanding of the energy industry, from energy technologies and markets to energy policy and sustainable development. Equips students with the essential toolkit to manage the energy transition and address challenges in the energy business. Strong links to the Energy Management Centre in London and networking opportunities with industry leaders across public and private sectors.",
+        "courses": [
+            "Sustainability and Energy",
+            "Energy Markets and Other Commodities",
+            "Energy Policy",
+            "Renewable Energy"
+        ],
+        "notes": "Prepares future decision-makers to lead the energy transition and sustainability initiatives across the energy sector."
+    },
+    {
+        "id": "OP140",
+        "name": "Strategic Asset Management",
+        "campus": "London",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Finance",
+        "seats": 80,
+        "ects": 20,
+        "contact_hours": 120,
+        "description": "Advanced specialisation in asset management covering portfolio construction, quantitative risk management, data science for investment, and ethics/compliance. Focuses on data-driven and sustainable investment strategies, regulatory frameworks, and real-world simulation training (AmplifyME). Strong positioning for careers in asset management, hedge funds, private equity, and tech-driven finance.",
+        "courses": [
+            "Investment Instruments",
+            "Strategic Investment and Portfolio Analysis",
+            "Quantitative Financial Risk Management",
+            "Data Science for Asset Management",
+            "Ethics, Regulation and Compliance in Asset Management"
+        ],
+        "notes": "Includes Bloomberg sessions, Python-based quantitative modelling, machine learning applications, and real-world trading simulations (subject to sufficient enrolment)."
+    },
+    {
+        "id": "OP31",
+        "name": "Digital Project Management 1",
+        "campus": "Madrid",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Project Management",
+        "seats": 60,
+        "ects": 20,
+        "contact_hours": 120,
+        "description": "Trains students to design and lead international, large and complex projects (multi-stakeholder, cross-cultural, sustainability and digital transformation projects). Focuses on building strategic management plans (requirements, deliverables, risks, resources, stakeholder management) and developing key professional skills such as team building, analytical thinking, flexibility, conflict resolution and innovation. Relevant for careers in complex project management, digital transformation, consulting, strategic planning and product management.",
+        "courses": [
+            "Project Management in Practice (UM1E) – 30h",
+            "Digital Business Transformation (UL14) – 22h",
+            "Sustainability in Project Management (UL17) – 15h",
+            "Consulting Methods (UL22) – 15h",
+            "Negotiation (UL16) – 15h",
+            "Agile and Lean Organization (UL19) – 15h",
+            "Risk Management (UL18) – 15h"
+        ],
+        "notes": "Strong emphasis on strategic project thinking, stakeholder management, and practical application through cases, simulations, group work and projects."
+    },
+    {
+        "id": "OP33",
+        "name": "Option E Madrid (Social Impact Entrepreneurs)",
+        "campus": "Madrid",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Entrepreneurship",
+        "seats": 39,
+        "ects": 25,
+        "contact_hours": 150,
+        "description": "Entrepreneurship-focused specialisation centred on social and human-centred innovation. Combines social impact, ecosystem immersion, venture creation, design thinking, product development and growth hacking. Strong emphasis on building sustainable and value-creating ventures with societal impact, hands-on coaching, mentoring and interaction with Madrid’s entrepreneurial ecosystem.",
+        "courses": [
+            "We Start Social & Human-Centered Innovation (24h)",
+            "Ecosystem Exposure Week & Project Coaching (15h + 15h)",
+            "Art Thinking & Design Thinking (15h + 15h)",
+            "Product Development, Prototyping & Growth Hacking (30h)",
+            "Creating an Innovative Venture – Business Thinking & Planning",
+            "Business Funding & Investor Relations (15h)",
+            "Entrepreneurship Festival & Final Jury Pitch"
+        ],
+        "notes": "Application required (video/document/project). Strong practical component including mentoring, coaching and ecosystem immersion. 50% individual + 50% team evaluation. Minimum 80% attendance."
+    },
+    {
+        "id": "OP30A",
+        "name": "Marketing and Digital Strategy",
+        "campus": "Madrid",
+        "semester": "Fall",
+        "language": "English",
+        "field": "Marketing",
+        "seats": 60,
+        "ects": 20,
+        "contact_hours": 120,
+        "description": "Equips students to understand and implement marketing strategies in a highly digitalized world. Focuses on customer-centric, data-driven digital marketing strategy and best practices, covering customer experience, marketing analytics, AI applications in marketing, and execution across digital channels. Relevant for careers in digital marketing, CX, product/brand marketing and marketing analytics.",
+        "courses": [
+            "Customer Experience (UM1C) – 30h",
+            "Project Management in Practice (UM1E_01) – 30h",
+            "Digital Marketing Strategy (UL11) – 15h",
+            "AI and Robots in Marketing (UM1A) – 30h",
+            "Marketing and Customer Analytics (UL12) – 15h"
+        ],
+        "notes": "Builds core foundations of digital marketing strategy: customer, data, processes and technologies. Emphasis on applying analytics for decision-making and understanding digital consumer behaviour."
     }
 ]
