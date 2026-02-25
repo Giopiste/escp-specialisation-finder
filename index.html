@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ESCP Specialisation Finder</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            margin: 24px;
+            max-width: 980px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+        }
+
+        .sub {
+            color: #444;
+            margin: 0 0 24px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin: 10px 0 6px;
+        }
+
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        button {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .mono {
+            white-space: pre-wrap;
+            background: #fafafa;
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border: 1px solid #ddd;
+            border-radius: 999px;
+            font-size: 12px;
+            margin-left: 6px;
+            color: #333;
+        }
+
+        .small {
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ESCP Specialisation Finder</h1>
+    <p style="font-size:14px; opacity:0.6;">
+        Built by Giorgio Pisterna – ESCP Master in Management
+    </p>
+    <p class="sub">Find the ESCP MiM specialisation that best matches your profile (quick, transparent scoring).</p>
+
+    <div class="card">
+        <div class="row">
+            <div>
+                <label>Career goal (1–2 lines)</label>
+                <textarea id="goal"
+                    placeholder="e.g., management consulting, product management, investment banking, sustainability..."></textarea>
+            </div>
+            <div>
+                <label>Interests / skills (comma-separated)</label>
+                <textarea id="interests"
+                    placeholder="e.g., AI, data, strategy, ESG, marketing, entrepreneurship..."></textarea>
+            </div>
+        </div>
+
+        <label>Constraint</label>
+        <select id="constraint">
+            <option value="none" selected>No constraint</option>
+            <option value="english">English only</option>
+            <option value="french">French only</option>
+            <option value="campus_berlin">Prefer Berlin</option>
+            <option value="campus_paris">Prefer Paris</option>
+            <option value="campus_london">Prefer London</option>
+            <option value="campus_madrid">Prefer Madrid</option>
+            <option value="campus_turin">Prefer Turin</option>
+        </select>
+
+        <div style="display:flex; gap:10px; align-items:center; margin-top:12px;">
+            <button id="runBtn">Find my best matches</button>
+            <span id="status" class="small"></span>
+        </div>
+
+        <p class="small">
+            Limitation: this matcher uses keywords + your inputs. It can’t know your real grades, workload preferences,
+            or hidden prerequisites.
+        </p>
+    </div>
+
+    <div id="output" class="card" style="display:none;">
+        <h2 style="margin:0 0 12px;">Results</h2>
+
+        <h3>1) Top 3 matches <span class="pill" id="confPill"></span></h3>
+        <div class="mono" id="top3"></div>
+
+        <h3 style="margin-top:14px;">2) Good alternatives</h3>
+        <div class="mono" id="alts"></div>
+
+        <h3 style="margin-top:14px;">3) Why these match you</h3>
+        <div class="mono" id="why"></div>
+
+        <h3 style="margin-top:14px;">4) Trade-offs / constraints check</h3>
+        <div class="mono" id="tradeoffs"></div>
+
+        <h3 style="margin-top:14px;">5) Confidence</h3>
+        <div class="mono" id="confidence"></div>
+    </div>
+
+    <script>
+        // Tiny starter dataset (expandable).
+        // Data points come from your uploaded list (campus, language, seats, term, name). You can add the full list.
+        let SPECIALISATIONS = [];
+
+        async function loadSpecialisations() {
+            const response = await fetch("./specialisations.json");
+            if (!response.ok) {
+                throw new Error("Could not load specialisations.json");
+            }
+
+            const raw = await response.json();
+
+            SPECIALISATIONS = raw.map(s => ({
+                ...s,
+
+                // Map JSON names to what your app expects
+                term: s.term || s.semester || "",
+                lang: s.lang || s.language || "",
+                campus: (s.campus || "").toUpperCase(),
+
+                seats: s.seats ?? "",
+                presentation: s.presentation ?? "",
+
+                tags: s.tags || [],
+                courses: s.courses || [],
+                description: s.description || ""
+            }));
+        }
+        const KEYWORD_MAP = {
+            consulting: ["consulting", "consultant", "cases", "strategy", "client", "transformation"],
+            finance: ["finance", "ib", "investment banking", "m&a", "valuation", "markets", "asset"],
+            marketing: ["marketing", "brand", "digital marketing", "communication", "go to market"],
+            sustainability: ["sustainability", "esg", "impact", "climate", "energy", "green"],
+            entrepreneurship: ["entrepreneurship", "startup", "venture", "scaling"],
+            digital: ["digital", "data", "ai", "analytics", "ml", "robotics", "big data", "cyber"]
+        };
+
+        function norm(s) { return (s || "").toLowerCase(); }
+
+        function extractKeywords(goal, interests) {
+            const text = norm(goal + " " + interests);
+            const kws = new Set();
+            // Add mapped keywords by detecting any term
+            for (const [bucket, terms] of Object.entries(KEYWORD_MAP)) {
+                if (terms.some(t => text.includes(t))) kws.add(bucket);
+            }
+            // Also add raw tokens
+            text.split(/[^a-z0-9]+/).filter(x => x.length > 2).forEach(t => kws.add(t));
+            return Array.from(kws);
+        }
+
+        function passesConstraint(s, constraint) {
+            if (constraint === "none") return true;
+            if (constraint === "english") return s.lang.toLowerCase().includes("english");
+            if (constraint === "french") return s.lang.toLowerCase().includes("french");
+            if (constraint.startsWith("campus_")) {
+                const c = constraint.replace("campus_", "").toUpperCase();
+                return s.campus === c;
+            }
+            return true;
+        }
+
+        function scoreSpec(s, kws) {
+            // Transparent scoring:
+            // +3 for bucket match (consulting/finance/etc) when bucket appears in keywords
+            // +2 for tag match
+            // +0.5 for partial name match
+            let score = 0;
+
+            const text = norm(s.name + " " + s.field + " " + (s.tags || []).join(" "));
+            for (const kw of kws) {
+                if (["consulting", "finance", "marketing", "sustainability", "entrepreneurship", "digital"].includes(kw) && norm(s.field).includes(kw)) score += 3;
+                if ((s.tags || []).some(t => norm(t) === kw)) score += 2;
+                if (text.includes(kw)) score += 0.5;
+            }
+
+            // Slight preference for more seats (more realistic chance)
+            score += Math.min(1.5, (s.seats || 0) / 100);
+
+            return score;
+        }
+
+        function confidenceFrom(scores, inputRichness) {
+            // confidence based on separation + how much user typed
+            if (scores.length === 0) return { c: 10, reason: "No matches after applying constraints." };
+            const top = scores[0]?.score ?? 0;
+            const second = scores[1]?.score ?? 0;
+            const sep = Math.max(0, top - second);
+            let c = 40 + Math.min(40, sep * 10); // big separation -> higher confidence
+            c += Math.min(20, inputRichness); // more input -> higher confidence
+            c = Math.max(5, Math.min(95, Math.round(c)));
+            const reason = `Top-vs-2nd score gap: ${sep.toFixed(2)}. Input detail bonus: ${inputRichness.toFixed(0)}.`;
+            return { c, reason };
+        }
+
+        function fmt(s) {
+            const seats = (s.seats !== "" && s.seats !== undefined) ? s.seats : "n/a";
+            const term = s.term ? s.term : "n/a";
+            const lang = s.lang ? s.lang : "n/a";
+
+            const desc = s.description ? `\n- Description: ${s.description}` : "";
+            const courses = (s.courses && s.courses.length)
+                ? `\n- Courses: ${s.courses.join(" | ")}`
+                : "";
+
+            return `${s.name}
+          - Field: ${s.field} | Campus: ${s.campus} | Term: ${term} | Language: ${lang} | Seats: ${seats}${desc}${courses}`;
+        }
+        function buildWhyFromTopMatch(topSpec, goal, interests) {
+            if (!topSpec) return "No top match to explain.";
+
+            const userText = norm(goal + " " + interests);
+
+            const courses = (topSpec.courses || []);
+            const matchedCourses = courses.filter(c => {
+                const cNorm = norm(c);
+                return userText.split(/[^a-z0-9]+/).some(w => w.length > 3 && cNorm.includes(w));
+            });
+
+            const courseList = courses.length
+                ? courses.map(c => `- ${c}`).join("\n")
+                : "- (No course list available)";
+
+            const matchedList = matchedCourses.length
+                ? matchedCourses.map(c => `- ${c}`).join("\n")
+                : "(No direct keyword overlap found — still a good match based on the overall theme.)";
+
+            return [
+                `Top match: ${topSpec.name}`,
+                ``,
+                `Why it fits: this specialisation includes courses aligned with your interests.`,
+                ``,
+                `Courses in this specialisation:`,
+                courseList,
+                ``,
+                `Courses that directly match your keywords:`,
+                matchedList
+            ].join("\n");
+        }
+        document.getElementById("runBtn").addEventListener("click", async () => {
+            if (SPECIALISATIONS.length === 0) {
+                await loadSpecialisations();
+            }
+            const goal = document.getElementById("goal").value.trim();
+            const interests = document.getElementById("interests").value.trim();
+            const constraint = document.getElementById("constraint").value;
+
+            document.getElementById("status").textContent = "";
+            document.getElementById("output").style.display = "none";
+
+            if ((goal + interests).length < 10) {
+                document.getElementById("status").textContent = "Write a bit more about your goal/interests (at least ~10 characters).";
+                return;
+            }
+
+            const kws = extractKeywords(goal, interests);
+            const inputRichness = Math.min(20, Math.round((goal.length + interests.length) / 20));
+
+            const scored = SPECIALISATIONS
+                .filter(s => passesConstraint(s, constraint))
+                .map(s => ({ s, score: scoreSpec(s, kws) }))
+                .sort((a, b) => b.score - a.score);
+
+            const top3 = scored.slice(0, 3);
+            const alts = scored.slice(3, 6);
+
+            const conf = confidenceFrom(scored.slice(0, 2), inputRichness);
+
+            // Build explanations
+            const why = [];
+            if (kws.includes("consulting")) why.push("- You mentioned consulting/strategy → consulting tracks score higher.");
+            if (kws.includes("digital") || kws.includes("ai") || kws.includes("data")) why.push("- You mentioned AI/data/digital → digital/AI-focused options rank up.");
+            if (kws.includes("sustainability") || kws.includes("esg")) why.push("- ESG/sustainability keywords detected → sustainability options rank up.");
+            if (why.length === 0) why.push("- Matching is mostly based on your keywords; add more detail for better results.");
+
+            const trade = [];
+            if (constraint === "english") trade.push("- Filter applied: English only (you might miss French options).");
+            if (constraint === "french") trade.push("- Filter applied: French only (many options are English).");
+            if (constraint.startsWith("campus_")) trade.push("- Filter applied: campus preference (you might miss better-fit options elsewhere).");
+            trade.push("- Seats are shown: low-seat options can be competitive.");
+
+            document.getElementById("output").style.display = "block";
+            document.getElementById("top3").textContent = top3.length ? top3.map(x => fmt(x.s)).join("\n\n") : "No results.";
+            document.getElementById("alts").textContent = alts.length ? alts.map(x => fmt(x.s)).join("\n\n") : "No alternatives.";
+            const topMatchSpec = top3[0]?.s;
+            document.getElementById("why").textContent = buildWhyFromTopMatch(topMatchSpec, goal, interests);
+            document.getElementById("tradeoffs").textContent = trade.join("\n");
+            document.getElementById("confidence").textContent = `Confidence: ${conf.c}%\nReason: ${conf.reason}`;
+            document.getElementById("confPill").textContent = `${conf.c}%`;
+        });
+    </script>
+</body>
+
+</html>
