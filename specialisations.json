@@ -15,6 +15,20 @@
             "International Business Marketing (GA04)",
             "Global Investment Banking, M&A and Private Equity (BA17)",
             "International Human Resource Management (HA03)"
+        ],
+        "keywords": [
+            "international business",
+            "internationalisation",
+            "global strategy",
+            "cross-cultural management",
+            "international marketing",
+            "global expansion",
+            "M&A",
+            "private equity",
+            "investment banking",
+            "global HR",
+            "multinational companies",
+            "international consulting"
         ]
     },
     {
@@ -37,7 +51,21 @@
             "Design Thinking (15h)",
             "Execution – Business Models and Investor Processes (30h)"
         ],
-        "notes": "Selection based on written application (CV + motivation) and possibly interview. Optional ‘flash idea’. Includes mandatory study trip (~€300 + travel/visa costs)."
+        "notes": "Selection based on written application (CV + motivation) and possibly interview. Optional ‘flash idea’. Includes mandatory study trip (~€300 + travel/visa costs).",
+        "keywords": [
+            "entrepreneurship",
+            "venture creation",
+            "climate tech",
+            "digital innovation",
+            "impact entrepreneurship",
+            "effectuation",
+            "design thinking",
+            "business model",
+            "startup finance",
+            "investor readiness",
+            "entrepreneurial ecosystem",
+            "startup execution"
+        ]
     },
     {
         "id": "OP112",
@@ -56,7 +84,21 @@
             "Creating Responsible Supply Chains",
             "Managing the Future (Digitalization x Sustainability)"
         ],
-        "notes": "Berlin is a strong context for sustainability (academic focus + Germany’s track record + green/social startup ecosystem)."
+        "notes": "Berlin is a strong context for sustainability (academic focus + Germany’s track record + green/social startup ecosystem).",
+        "keywords": [
+            "sustainability strategy",
+            "ESG",
+            "circular economy",
+            "responsible supply chain",
+            "sustainable operations",
+            "sustainable marketing",
+            "sustainability transition",
+            "green business",
+            "social enterprise",
+            "sharing economy",
+            "digitalization and sustainability",
+            "impact management"
+        ]
     },
     {
         "id": "OP142",
@@ -75,7 +117,21 @@
             "Cyber Law, Regulations and Ethics (30h)",
             "Capstone Project: Cyber Security Strategy Implementation (30h)"
         ],
-        "notes": "Focus on identifying threats/vulnerabilities, designing cybersecurity strategies and policies, managing business impact/continuity, and navigating legal, ethical and regulatory requirements."
+        "notes": "Focus on identifying threats/vulnerabilities, designing cybersecurity strategies and policies, managing business impact/continuity, and navigating legal, ethical and regulatory requirements.",
+        "keywords": [
+            "cybersecurity",
+            "cyber risk",
+            "risk management",
+            "information security",
+            "business continuity",
+            "incident response",
+            "governance risk and compliance",
+            "cyber law",
+            "privacy regulation",
+            "network security",
+            "cryptography",
+            "cybersecurity strategy"
+        ]
     },
     {
         "id": "OP29",
@@ -94,7 +150,21 @@
             "Financing Management for Consulting (BX17) – 30h",
             "Management Consulting in Practice (BX15) – 30h (McKinsey-style problem solving + microeconomics of competitiveness)"
         ],
-        "notes": "Application required (cover letter + proof of English fluency). Strong practical component (real project for actual companies)."
+        "notes": "Application required (cover letter + proof of English fluency). Strong practical component (real project for actual companies).",
+        "keywords": [
+            "management consulting",
+            "business transformation",
+            "consulting process",
+            "client management",
+            "problem solving",
+            "structured thinking",
+            "strategy consulting",
+            "innovation consulting",
+            "stakeholder communication",
+            "consulting deliverables",
+            "financial analysis for consulting",
+            "consulting project"
+        ]
     },
     {
         "id": "OP103",
@@ -113,7 +183,21 @@
             "Energy Policy",
             "Renewable Energy"
         ],
-        "notes": "Prepares future decision-makers to lead the energy transition and sustainability initiatives across the energy sector."
+        "notes": "Prepares future decision-makers to lead the energy transition and sustainability initiatives across the energy sector.",
+        "keywords": [
+            "energy transition",
+            "renewable energy",
+            "energy markets",
+            "energy policy",
+            "commodities markets",
+            "power markets",
+            "decarbonization",
+            "energy economics",
+            "sustainable development",
+            "climate policy",
+            "energy industry",
+            "clean energy strategy"
+        ]
     },
     {
         "id": "OP140",
@@ -133,7 +217,21 @@
             "Data Science for Asset Management",
             "Ethics, Regulation and Compliance in Asset Management"
         ],
-        "notes": "Includes Bloomberg sessions, Python-based quantitative modelling, machine learning applications, and real-world trading simulations (subject to sufficient enrolment)."
+        "notes": "Includes Bloomberg sessions, Python-based quantitative modelling, machine learning applications, and real-world trading simulations (subject to sufficient enrolment).",
+        "keywords": [
+            "asset management",
+            "portfolio management",
+            "portfolio construction",
+            "quantitative finance",
+            "risk management",
+            "factor investing",
+            "data science",
+            "machine learning in finance",
+            "trading simulation",
+            "ethics and compliance",
+            "financial regulation",
+            "sustainable investing"
+        ]
     },
     {
         "id": "OP31",
@@ -155,7 +253,21 @@
             "Agile and Lean Organization (UL19) – 15h",
             "Risk Management (UL18) – 15h"
         ],
-        "notes": "Strong emphasis on strategic project thinking, stakeholder management, and practical application through cases, simulations, group work and projects."
+        "notes": "Strong emphasis on strategic project thinking, stakeholder management, and practical application through cases, simulations, group work and projects.",
+        "keywords": [
+            "project management",
+            "digital transformation",
+            "program management",
+            "stakeholder management",
+            "risk management",
+            "agile",
+            "lean",
+            "requirements management",
+            "project planning",
+            "cross-cultural teams",
+            "negotiation",
+            "complex projects"
+        ]
     },
     {
         "id": "OP33",
@@ -177,7 +289,21 @@
             "Business Funding & Investor Relations (15h)",
             "Entrepreneurship Festival & Final Jury Pitch"
         ],
-        "notes": "Application required (video/document/project). Strong practical component including mentoring, coaching and ecosystem immersion. 50% individual + 50% team evaluation. Minimum 80% attendance."
+        "notes": "Application required (video/document/project). Strong practical component including mentoring, coaching and ecosystem immersion. 50% individual + 50% team evaluation. Minimum 80% attendance.",
+        "keywords": [
+            "social entrepreneurship",
+            "impact venture",
+            "human-centered innovation",
+            "design thinking",
+            "product prototyping",
+            "MVP",
+            "growth hacking",
+            "venture building",
+            "startup mentoring",
+            "ecosystem immersion",
+            "fundraising",
+            "pitching"
+        ]
     },
     {
         "id": "OP30A",
@@ -197,7 +323,21 @@
             "AI and Robots in Marketing (UM1A) – 30h",
             "Marketing and Customer Analytics (UL12) – 15h"
         ],
-        "notes": "Builds core foundations of digital marketing strategy: customer, data, processes and technologies. Emphasis on applying analytics for decision-making and understanding digital consumer behaviour."
+        "notes": "Builds core foundations of digital marketing strategy: customer, data, processes and technologies. Emphasis on applying analytics for decision-making and understanding digital consumer behaviour.",
+        "keywords": [
+            "digital marketing",
+            "marketing strategy",
+            "customer experience",
+            "CX",
+            "marketing analytics",
+            "customer analytics",
+            "AI in marketing",
+            "marketing automation",
+            "digital consumer behavior",
+            "product marketing",
+            "brand marketing",
+            "data-driven marketing"
+        ]
     },
     {
         "id": "OP104",
@@ -220,7 +360,21 @@
             "Quantitative and analytical skills (15h / 2.5 ECTS)",
             "Consulting: The Skills You Need to Get Hired (15h / 2.5 ECTS)"
         ],
-        "notes": "Selection/recruitment-focused block included; designed for consulting careers across industries."
+        "notes": "Selection/recruitment-focused block included; designed for consulting careers across industries.",
+        "keywords": [
+            "international consulting",
+            "consulting methods",
+            "case interview",
+            "quantitative tests",
+            "analytical skills",
+            "digital transformation consulting",
+            "sustainability consulting",
+            "social impact consulting",
+            "third sector",
+            "client problem solving",
+            "consulting recruitment",
+            "live case study"
+        ]
     },
     {
         "id": "OP107",
